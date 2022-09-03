@@ -1,13 +1,24 @@
 import { FC } from "react";
 import { Car } from "../../../models/car";
-import { CarItem } from "../common/components/CarItem";
-import { Flex, View, Spacer, IconButton } from "vcc-ui";
+import { CarItem } from "../common/components/car-item/CarItem";
+import { Flex, View, Spacer, IconButton, Block } from "vcc-ui";
+import { useSpringCarousel } from "react-spring-carousel";
 
 type RechargeCarsListProps = {
   cars: Car[];
 };
 
 export const RechargeCarsList: FC<RechargeCarsListProps> = ({ cars }) => {
+  const { carouselFragment, slideToPrevItem, slideToNextItem } =
+    useSpringCarousel({
+      itemsPerSlide: 4,
+      withLoop: false,
+      items: cars.map((car) => ({
+        id: car.id,
+        renderItem: <CarItem key={car.id} car={car} />,
+      })),
+    });
+
   return (
     <View
       maxWidth={1300}
@@ -15,11 +26,7 @@ export const RechargeCarsList: FC<RechargeCarsListProps> = ({ cars }) => {
       margin="auto"
       style={{ overflow: "hidden" }}
     >
-      <Flex extend={{ flexDirection: "row" }}>
-        {cars.map((car) => (
-          <CarItem key={car.id} car={car} />
-        ))}
-      </Flex>
+      <Block>{carouselFragment}</Block>
       <Flex
         extend={{
           flexDirection: "row",
@@ -29,14 +36,13 @@ export const RechargeCarsList: FC<RechargeCarsListProps> = ({ cars }) => {
       >
         <IconButton
           iconName={"navigation-chevronback"}
-          onClick={() => console.log("prev")}
+          onClick={slideToPrevItem}
           variant="outline"
         />
-        <Spacer />
-        <Spacer />
+        <Spacer size={{ default: 2 }} />
         <IconButton
           iconName={"navigation-chevronforward"}
-          onClick={() => console.log("prev")}
+          onClick={slideToNextItem}
           variant="outline"
         />
       </Flex>
