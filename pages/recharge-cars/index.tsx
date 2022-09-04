@@ -1,24 +1,53 @@
 import { NextPage } from "next";
-import { useEffect } from "react";
-import { Text, View } from "vcc-ui";
+import { useState } from "react";
+import { TabNav, TabNavItem, Text, View } from "vcc-ui";
+import { Car } from "../../models/car";
+import { ErrorPanel } from "../../src/components/common/components/error-panel/ErrorPanel";
+import { Loader } from "../../src/components/common/components/loader/Loader";
+import { RechargeCarsFilterPanel } from "../../src/components/recharge-cars/RechargeCarsFilterPanel";
 import { RechargeCarsList } from "../../src/components/recharge-cars/RechargeCarsList";
-import { useFetchCars } from "../../src/hooks/useFetchCars";
+import { useFetchCars } from "../../src/hooks/rechargeCarsHooks";
 
-const RechargeCars: NextPage = () => {
+const RechargeCarsPage: NextPage = () => {
   const { data, isLoading, error } = useFetchCars();
+  const [selectedBodyType, setSelectedBodyType] = useState("all");
 
-  if (error) return <p>Something went wrong...</p>;
+  const bodyTypeSelectHandler = (bodyType: string) => {
+    setSelectedBodyType(bodyType);
+  };
+
+  const filterDataByBodyTypeHandler = (data: Car[], bodyType: string) => {
+    return bodyType === "all"
+      ? data
+      : data.filter((car) => car.bodyType === bodyType);
+  };
+
+  if (error) return <ErrorPanel />;
 
   return (
     <View spacing={3} padding={1}>
       <View padding={3} alignSelf={"center"}>
-        <Text variant="hillary" subStyle="emphasis">
+        <Text
+          variant="hillary"
+          subStyle="emphasis"
+          style={{ fontSize: "2rem" }}
+        >
           Our models
         </Text>
       </View>
-      {isLoading ? <p>Loading...</p> : <RechargeCarsList cars={data} />}
+      <RechargeCarsFilterPanel
+        selectedType={selectedBodyType}
+        onValueChange={bodyTypeSelectHandler}
+      />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <RechargeCarsList
+          cars={filterDataByBodyTypeHandler(data, selectedBodyType)}
+        />
+      )}
     </View>
   );
 };
 
-export default RechargeCars;
+export default RechargeCarsPage;
