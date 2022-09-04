@@ -1,22 +1,20 @@
 import { NextPage } from "next";
-import { Button, Link, Logo, Spacer, Text, View } from "vcc-ui";
+import { Button, Link, Logo, Text, View } from "vcc-ui";
 
 const HomePage: NextPage = () => {
   return (
     <View
-      spacing={3}
-      maxWidth={1000}
-      margin="auto"
-      display="flex"
-      justifyContent={"center"}
-      alignItems="center"
-      height={"70vh"}
+      extend={{
+        height: "50vh",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
     >
-      <View padding={5}>
+      <View>
         <Logo type="spreadmark" height={32} />
       </View>
       <View padding={3}>
-        <Text variant={"bates"} as="h2">
+        <Text variant={"bates"} style={{ fontSize: "1rem" }}>
           Checkout our recharge cars
         </Text>
       </View>
