@@ -1,48 +1,46 @@
-import { FC } from "react";
+import { FC, useRef } from "react";
 import { Car } from "../../../models/car";
-import { CarItem } from "../common/components/car-item/CarItem";
-import { Flex, View, Spacer, IconButton, Block } from "vcc-ui";
-import { useSpringCarousel } from "react-spring-carousel";
+import { RechargeCarItem } from "./RechargeCarItem";
+import { sliderSettings } from "../common/constants/sliderSettings";
+import { Flex, View, Spacer, IconButton } from "vcc-ui";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 type RechargeCarsListProps = {
   cars: Car[];
 };
 
 export const RechargeCarsList: FC<RechargeCarsListProps> = ({ cars }) => {
-  const { carouselFragment, slideToPrevItem, slideToNextItem } =
-    useSpringCarousel({
-      itemsPerSlide: 4,
-      withLoop: false,
-      items: cars.map((car) => ({
-        id: car.id,
-        renderItem: <CarItem key={car.id} car={car} />,
-      })),
-    });
+  const sliderRef = useRef<Slider>(null);
 
   return (
-    <View
-      maxWidth={1300}
-      width={"100%"}
-      margin="auto"
-      style={{ overflow: "hidden" }}
-    >
-      <Block>{carouselFragment}</Block>
+    <View maxWidth={1300} width={"100%"} margin="auto">
+      <Slider {...sliderSettings} ref={sliderRef}>
+        {cars.map((car) => (
+          <RechargeCarItem key={car.id} car={car} />
+        ))}
+      </Slider>
       <Flex
         extend={{
           flexDirection: "row",
           justifyContent: "flex-end",
           marginTop: "1rem",
+          padding: "1rem",
+          untilL: {
+            display: "none",
+          },
         }}
       >
         <IconButton
           iconName={"navigation-chevronback"}
-          onClick={slideToPrevItem}
+          onClick={() => sliderRef!.current!.slickPrev()}
           variant="outline"
         />
         <Spacer size={{ default: 2 }} />
         <IconButton
           iconName={"navigation-chevronforward"}
-          onClick={slideToNextItem}
+          onClick={() => sliderRef!.current!.slickNext()}
           variant="outline"
         />
       </Flex>
