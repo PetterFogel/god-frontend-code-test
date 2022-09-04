@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Car } from "../../../../models/car";
+import { Car } from "../../../../../models/car";
 import { Flex, View, Text, Link } from "vcc-ui";
 import Image from "next/image";
 
@@ -39,10 +39,18 @@ export const CarItem: FC<CarItemProps> = ({ car }) => {
           alignItems: "center",
         }}
       >
-        <Link href="/" arrow="right" style={{ margin: "0rem 1rem" }}>
+        <Link
+          href={`/recharge-cars/learn/${car.id}`}
+          arrow="right"
+          style={{ margin: "0rem 1rem" }}
+        >
           LEARN
         </Link>
-        <Link href="/" arrow="right" style={{ margin: "0rem 1rem" }}>
+        <Link
+          href={`/recharge-cars/shop/${car.id}`}
+          arrow="right"
+          style={{ margin: "0rem 1rem" }}
+        >
           SHOP
         </Link>
       </Flex>

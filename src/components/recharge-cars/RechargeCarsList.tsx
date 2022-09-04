@@ -1,8 +1,8 @@
 import { FC, useRef } from "react";
 import { Car } from "../../../models/car";
-import { RechargeCarItem } from "./RechargeCarItem";
 import { sliderSettings } from "../common/constants/sliderSettings";
 import { Flex, View, Spacer, IconButton } from "vcc-ui";
+import { CarItem } from "../common/components/car-item/CarItem";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -15,10 +15,10 @@ export const RechargeCarsList: FC<RechargeCarsListProps> = ({ cars }) => {
   const sliderRef = useRef<Slider>(null);
 
   return (
-    <View maxWidth={1300} width={"100%"} margin="auto">
+    <View extend={{ margin: "auto", maxWidth: 1300, width: "100%" }}>
       <Slider {...sliderSettings} ref={sliderRef}>
         {cars.map((car) => (
-          <RechargeCarItem key={car.id} car={car} />
+          <CarItem key={car.id} car={car} />
         ))}
       </Slider>
       <Flex
