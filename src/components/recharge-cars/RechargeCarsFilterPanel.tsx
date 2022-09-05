@@ -14,12 +14,12 @@ export const RechargeCarsFilterPanel: FC<RechargeCarsFilterPanelProps> = ({
   return (
     <TabNav enableLineTransition>
       <TabNavItem
-        isActive={selectedType === "all"}
+        isActive={selectedType === BodyTypes.ALL}
         onClick={() => {
           onValueChange("all");
         }}
       >
-        ALL
+        All
       </TabNavItem>
       <TabNavItem
         isActive={selectedType === BodyTypes.SUV}
@@ -27,7 +27,7 @@ export const RechargeCarsFilterPanel: FC<RechargeCarsFilterPanelProps> = ({
           onValueChange("suv");
         }}
       >
-        SUV
+        Suv
       </TabNavItem>
       <TabNavItem
         isActive={selectedType === BodyTypes.SEDAN}
@@ -35,7 +35,7 @@ export const RechargeCarsFilterPanel: FC<RechargeCarsFilterPanelProps> = ({
           onValueChange("sedan");
         }}
       >
-        SEDAN
+        Sedan
       </TabNavItem>
       <TabNavItem
         isActive={selectedType === BodyTypes.ESTATE}
@@ -43,7 +43,7 @@ export const RechargeCarsFilterPanel: FC<RechargeCarsFilterPanelProps> = ({
           onValueChange("estate");
         }}
       >
-        ESTATE
+        Estate
       </TabNavItem>
     </TabNav>
   );
