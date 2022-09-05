@@ -1,9 +1,10 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
 import { useFetchSpecificCar } from "../../../src/hooks/rechargeCarsHooks";
-import { ErrorPanel } from "../../../src/components/common/components/error-panel/ErrorPanel";
-import { Loader } from "../../../src/components/common/components/loader/Loader";
 import { Flex, Link, Text, View } from "vcc-ui";
+import { ErrorPanel } from "../../../src/components/common/components/error-panel/ErrorPanel";
+import { PageTitle } from "../../../src/components/common/components/page-title/PageTitle";
+import { Loader } from "../../../src/components/common/components/loader/Loader";
 
 const RechargeCarDetails: FC = () => {
   const router = useRouter();
@@ -22,15 +23,7 @@ const RechargeCarDetails: FC = () => {
         margin: "auto",
       }}
     >
-      <View>
-        <Text
-          variant="hillary"
-          subStyle="emphasis"
-          style={{ fontSize: "2rem" }}
-        >
-          Learn
-        </Text>
-      </View>
+      <PageTitle title="Learn" alignStyle="start" padding={0} />
       {data && (
         <View>
           <Text variant="hillary" style={{ fontSize: "1.5rem" }}>

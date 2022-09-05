@@ -1,9 +1,9 @@
 import { NextPage } from "next";
 import { useState } from "react";
-import { TabNav, TabNavItem, Text, View } from "vcc-ui";
-import { Car } from "../../models/car";
+import { View } from "vcc-ui";
 import { ErrorPanel } from "../../src/components/common/components/error-panel/ErrorPanel";
 import { Loader } from "../../src/components/common/components/loader/Loader";
+import { PageTitle } from "../../src/components/common/components/page-title/PageTitle";
 import { filterDataByBodyTypeHandler } from "../../src/components/common/functions/filterDataByBodyTypeHandler";
 import { RechargeCarsFilterPanel } from "../../src/components/recharge-cars/RechargeCarsFilterPanel";
 import { RechargeCarsList } from "../../src/components/recharge-cars/RechargeCarsList";
@@ -30,6 +30,7 @@ const RechargeCarsPage: NextPage = () => {
         marginBottom: "4rem",
       }}
     >
+      <PageTitle title="Our models" alignStyle="center" padding={3} />
       <RechargeCarsFilterPanel
         selectedType={selectedBodyType}
         onValueChange={bodyTypeSelectHandler}

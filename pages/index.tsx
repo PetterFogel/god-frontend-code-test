@@ -1,26 +1,27 @@
 import { NextPage } from "next";
-import { Button, Link, Logo, Text, View } from "vcc-ui";
+import { Button, Link, Logo, View } from "vcc-ui";
+import { PageTitle } from "../src/components/common/components/page-title/PageTitle";
 
 const HomePage: NextPage = () => {
   return (
     <View
       extend={{
-        height: "50vh",
+        height: "60vh",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
       <View>
-        <Logo type="spreadmark" height={32} />
+        <Logo type="spreadmark" height={25} />
       </View>
-      <View padding={3}>
-        <Text variant={"bates"} style={{ fontSize: "1rem" }}>
-          Checkout our recharge cars
-        </Text>
-      </View>
+      <PageTitle
+        title="Checkout our recharge cars"
+        alignStyle="center"
+        padding={5}
+      />
       <View>
         <Link href={"/recharge-cars"}>
-          <Button>Shop</Button>
+          <Button size="small">Shop</Button>
         </Link>
       </View>
     </View>
