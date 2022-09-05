@@ -1,9 +1,8 @@
 import { AppProps } from "next/app";
-import { Logo, StyleProvider, TabNav, ThemePicker, View } from "vcc-ui";
+import { StyleProvider, ThemePicker } from "vcc-ui";
+import { Header } from "../src/components/common/components/header/Header";
 import React from "react";
 import "../public/css/styles.css";
-import Link from "next/link";
-import { Header } from "../src/components/common/components/header/Header";
 
 function HomePage({ Component, pageProps }: AppProps) {
   return (

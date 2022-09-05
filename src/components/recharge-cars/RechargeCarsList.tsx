@@ -15,10 +15,10 @@ export const RechargeCarsList: FC<RechargeCarsListProps> = ({ cars }) => {
   const sliderRef = useRef<Slider>(null);
 
   return (
-    <View extend={{ margin: "auto", maxWidth: 1300, width: "100%" }}>
-      <Slider {...sliderSettings} ref={sliderRef}>
+    <>
+      <Slider {...sliderSettings} ref={sliderRef} arrows={false}>
         {cars.map((car) => (
-          <CarItem key={car.id} car={car} />
+          <CarItem key={car.id} car={car} priorityIndex={0} />
         ))}
       </Slider>
       <Flex
@@ -44,6 +44,6 @@ export const RechargeCarsList: FC<RechargeCarsListProps> = ({ cars }) => {
           variant="outline"
         />
       </Flex>
-    </View>
+    </>
   );
 };
