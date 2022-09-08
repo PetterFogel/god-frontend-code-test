@@ -6,6 +6,7 @@ import { CarItem } from "../common/components/car-item/CarItem";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { PrevAndNextButtonConatiner } from "../common/components/prev-and-next-button-container/PrevAndNextButtonContainer";
 
 type RechargeCarsListProps = {
   cars: Car[];
@@ -14,14 +15,6 @@ type RechargeCarsListProps = {
 export const RechargeCarsList: FC<RechargeCarsListProps> = ({ cars }) => {
   const sliderRef = useRef<Slider>(null);
 
-  const prevBtnHandler = () => {
-    if (sliderRef.current) return sliderRef.current.slickPrev();
-  };
-
-  const nextBtnHandler = () => {
-    if (sliderRef.current) return sliderRef.current.slickNext();
-  };
-
   return (
     <>
       <Slider {...sliderSettings} ref={sliderRef} arrows={false}>
@@ -29,29 +22,7 @@ export const RechargeCarsList: FC<RechargeCarsListProps> = ({ cars }) => {
           <CarItem key={car.id} car={car} priorityIndex={0} />
         ))}
       </Slider>
-      <Flex
-        extend={{
-          flexDirection: "row",
-          justifyContent: "flex-end",
-          marginTop: "1rem",
-          padding: "1rem",
-          untilL: {
-            display: "none",
-          },
-        }}
-      >
-        <IconButton
-          iconName={"navigation-chevronback"}
-          onClick={() => prevBtnHandler()}
-          variant="outline"
-        />
-        <Spacer size={{ default: 2 }} />
-        <IconButton
-          iconName={"navigation-chevronforward"}
-          onClick={() => nextBtnHandler()}
-          variant="outline"
-        />
-      </Flex>
+      <PrevAndNextButtonConatiner sliderRef={sliderRef} />
     </>
   );
 };
