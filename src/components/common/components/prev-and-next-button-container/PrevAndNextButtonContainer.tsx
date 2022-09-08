@@ -9,14 +9,6 @@ type PrevAndNextButtonConatinerProps = {
 export const PrevAndNextButtonConatiner: FC<
   PrevAndNextButtonConatinerProps
 > = ({ sliderRef }) => {
-  const prevBtnHandler = () => {
-    if (sliderRef.current) return sliderRef.current.slickPrev();
-  };
-
-  const nextBtnHandler = () => {
-    if (sliderRef.current) return sliderRef.current.slickNext();
-  };
-
   return (
     <Flex
       extend={{
@@ -31,13 +23,13 @@ export const PrevAndNextButtonConatiner: FC<
     >
       <IconButton
         iconName={"navigation-chevronback"}
-        onClick={() => prevBtnHandler()}
+        onClick={() => sliderRef.current && sliderRef.current.slickPrev()}
         variant="outline"
       />
       <Spacer size={{ default: 2 }} />
       <IconButton
         iconName={"navigation-chevronforward"}
-        onClick={() => nextBtnHandler()}
+        onClick={() => sliderRef.current && sliderRef.current.slickNext()}
         variant="outline"
       />
     </Flex>
