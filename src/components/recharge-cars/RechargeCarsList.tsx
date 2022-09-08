@@ -14,6 +14,14 @@ type RechargeCarsListProps = {
 export const RechargeCarsList: FC<RechargeCarsListProps> = ({ cars }) => {
   const sliderRef = useRef<Slider>(null);
 
+  const prevBtnHandler = () => {
+    if (sliderRef.current) return sliderRef.current.slickPrev();
+  };
+
+  const nextBtnHandler = () => {
+    if (sliderRef.current) return sliderRef.current.slickNext();
+  };
+
   return (
     <>
       <Slider {...sliderSettings} ref={sliderRef} arrows={false}>
@@ -34,13 +42,13 @@ export const RechargeCarsList: FC<RechargeCarsListProps> = ({ cars }) => {
       >
         <IconButton
           iconName={"navigation-chevronback"}
-          onClick={() => sliderRef!.current!.slickPrev()}
+          onClick={() => prevBtnHandler()}
           variant="outline"
         />
         <Spacer size={{ default: 2 }} />
         <IconButton
           iconName={"navigation-chevronforward"}
-          onClick={() => sliderRef!.current!.slickNext()}
+          onClick={() => nextBtnHandler()}
           variant="outline"
         />
       </Flex>
